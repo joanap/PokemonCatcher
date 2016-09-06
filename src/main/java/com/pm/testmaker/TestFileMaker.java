@@ -1,6 +1,6 @@
 package com.pm.testmaker;
 
-import com.pm.pokemoncatcher.PokemonCatcher;
+import com.pm.pokemoncatcher.SimplePokemonCatcher;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -166,13 +166,17 @@ public class TestFileMaker {
    
     /**
      * Return the number of caught pokemons in the path.
-     * @param path the path to walk.
+     * @param pathInCardinalPoints path to walk
      * @return number of caught pokemons.
      */
-    public long processTest(String path) {
-        PokemonCatcher pokemonCatcher = new PokemonCatcher();
-        pokemonCatcher.walk(path);
-        return pokemonCatcher.getCaughtPokemons();
+    public long processTest(String pathInCardinalPoints) {
+        SimplePokemonCatcher pokemonCatcher = new SimplePokemonCatcher();
+        for (int i = 0; i < pathInCardinalPoints.length(); i++){
+            char cardinalPoint = pathInCardinalPoints.charAt(i);    
+            pokemonCatcher.walk(cardinalPoint);
+            pokemonCatcher.catchPokemon();
+        }
+        return pokemonCatcher.getNumberCaughtPokemons();
     }
     
     /**
@@ -198,7 +202,7 @@ public class TestFileMaker {
         TestFileMaker testFileMaker = new TestFileMaker();
         ArrayList<String> testPaths =  new ArrayList<String>();
            
-        //testPaths.add("E");
+        testPaths.add("E");
         //testPaths.add("NESO");
         //testPaths.add("NSNSNSNSNS");
         //testPaths.add(testFileMaker.cycleWithOutlier(1000));
@@ -208,7 +212,7 @@ public class TestFileMaker {
         //testPaths.add(testFileMaker.wrongInput(2000));
 
 
-        testPaths.add(testFileMaker.randomWalk(1000000));
+        //testPaths.add(testFileMaker.randomWalk(1000000));
 
         try {            
             File file = new File("src/test/resources/test.csv");

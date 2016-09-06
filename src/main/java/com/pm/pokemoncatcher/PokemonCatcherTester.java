@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  * The PokemonCatcherTester program implements an application that tests the
- * PokemonCatcher class with a path from standard input given by the user.
+ SimplePokemonCatcher class with a path from standard input given by the user.
  * It prints the number of caught pokemons to standard output.
  * 
  * @author joanapinto
@@ -41,18 +41,15 @@ public class PokemonCatcherTester {
         Scanner scanner = new Scanner(System.in);
         PokemonCatcherTester test = new PokemonCatcherTester();
         String pathInCardinalPoints = test.processInput(scanner);
-        PokemonCatcher pokemonCatcher = null;
-        long caughtPokemons = 0;
-        
-        if(pathInCardinalPoints != null) {
-            pokemonCatcher = new PokemonCatcher();
-            pokemonCatcher.walk(pathInCardinalPoints);
+        SimplePokemonCatcher pokemonCatcher = new SimplePokemonCatcher();
+
+        for (int i = 0; i < pathInCardinalPoints.length(); i++){
+            char cardinalPoint = pathInCardinalPoints.charAt(i);    
+            pokemonCatcher.walk(cardinalPoint);
+            pokemonCatcher.catchPokemon();
         }
-        if(pokemonCatcher != null) {
-            caughtPokemons = pokemonCatcher.getCaughtPokemons();
-        }        
-        
-        System.out.println(caughtPokemons);
+
+        System.out.println(pokemonCatcher.getNumberCaughtPokemons());
     }
 }
 
