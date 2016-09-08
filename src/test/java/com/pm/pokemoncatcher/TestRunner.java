@@ -17,8 +17,8 @@ public class TestRunner {
      *
      * @param args unused.
      */
-    public static void main(String[] args) {
-        Result result = JUnitCore.runClasses(SimplePokemonCatcherTest.class);
+    public static void main(String[] args) {        
+        Result result = JUnitCore.runClasses(SimplePokemonCatcherTest.class, OptimizedPokemonCatcherTest.class);
 
         for (Failure failure : result.getFailures()) {
             System.out.println(failure.toString());

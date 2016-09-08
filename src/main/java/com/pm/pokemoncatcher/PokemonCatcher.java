@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.pm.pokemoncatcher;
 
 import com.pm.pokemoncatcher.strategies.OptimizedPokemonCatcher;
@@ -19,10 +14,18 @@ import java.util.Scanner;
 public class PokemonCatcher {       
     private final PokemonCatcherInterface _pokemonCatcher = new OptimizedPokemonCatcher();
     
+    /**
+     * Returns the number of caught pokemons.
+     * @return number of caught pokemons.
+     */
     public long getNumberCaughtPokemons(){
         return _pokemonCatcher.getNumberCaughtPokemons();
     }
     
+    /**
+     * 
+     * @param direction
+     */
     public void walkAndCatchPokemon(char direction){
         _pokemonCatcher.walk(direction);
         _pokemonCatcher.catchPokemon();
@@ -49,14 +52,13 @@ public class PokemonCatcher {
     public static void main(String[] args) {       
         Scanner scanner = new Scanner(System.in);        
         PokemonCatcher catcher = new PokemonCatcher();
-        
+       
         String pathInCardinalPoints = catcher.processInput(scanner);
 
         for (int i = 0; i < pathInCardinalPoints.length(); i++){
             char direction = pathInCardinalPoints.charAt(i);    
             catcher.walkAndCatchPokemon(direction);            
         }
-
         System.out.println(catcher.getNumberCaughtPokemons());
     }
 }

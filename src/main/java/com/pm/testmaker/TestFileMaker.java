@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 /*
@@ -22,25 +23,20 @@ import java.util.Random;
  */
 public class TestFileMaker {
 
-    /**
-     * The cardinal points of any path
-     */
-    public static final String[] cardinalPoints = {"N","E","S","O"};
+    public static final char NORTH = 'N';
+    public static final char SOUTH = 'S';
+    public static final char EAST = 'E';
+    public static final char WEST = 'O';
     
-    /**
-     *
-     * @param originalArray
-     * @return
-     */
-    public String[] invertArray(String[] originalArray) {
-        String[] invertedArray = originalArray;
-        for(int i = 0; i < invertedArray.length / 2; i++) {
-            String temp = invertedArray[i];
-            invertedArray[i] = invertedArray[invertedArray.length - i - 1];
-            invertedArray[invertedArray.length - i - 1] = temp;
-        }
-        return invertedArray;
+    private final HashMap<Integer, Character> intDirections = new HashMap<>();
+    
+    public TestFileMaker() {
+        intDirections.put(0, NORTH);
+        intDirections.put(1, SOUTH);
+        intDirections.put(2, EAST);
+        intDirections.put(3, WEST);
     }
+    
   
     /**
      * Return an int between a range.
@@ -61,37 +57,12 @@ public class TestFileMaker {
      * @param max maximum value in the range.
      * @return cardinal point.
      */
-    public String randomCardPoint(int min, int max) {
-        int random = randInt(0,cardinalPoints.length-1);
-        switch(random) {
-            case 0:
-                return "N";
-            case 1:
-                return "E";
-            case 2:
-                return "S";
-            case 3:
-                return "O";
-            default:
-                return "N";
+    public char randomCardPoint(int min, int max) {
+        int random = randInt(min,max);
+        if(intDirections.containsKey(random)) {
+            return intDirections.get(random);
         }
-    }
-    
-    /**
-     * Generate a quadrangular cycle path with an edge of n (diameter) cardinal
-     * points.
-     * @param diameter the number of cardinal points in an edge.
-     * @param cardPoints the available cardinal points.
-     * @return path to walk.
-     */
-    public String cycle(long diameter, String[] cardPoints) {
-        String path = "";
-        for(String cardPoint: cardPoints) {
-            for(long i = 0; i < diameter-1; i++) {
-                path += cardPoint;
-            }
-        }
-        return path;
+        return NORTH;
     }
     
     /**
@@ -100,12 +71,12 @@ public class TestFileMaker {
      * @return path to walk.
      */
     public String line(long pathSize) {
-        String path = "";
-        String cardPoint = randomCardPoint(0,cardinalPoints.length-1);
+        StringBuilder path = new StringBuilder();
+        char cardPoint = randomCardPoint(0,intDirections.size() - 1);
         for(long i = 0; i < pathSize; i++) {
-            path+=cardPoint;
+            path.append(cardPoint);
         }
-        return path;        
+        return path.toString();        
     }
     
     /**
@@ -114,42 +85,11 @@ public class TestFileMaker {
      * @return path to walk.
      */
     public String randomWalk(long pathSize) {
-        String path = "";
+        StringBuilder path = new StringBuilder();
         for(long i = 0; i < pathSize; i++) {
-            path+=randomCardPoint(0,cardinalPoints.length-1);
+            path.append(randomCardPoint(0,intDirections.size() - 1));
         }
-        return path;
-    }
-
-    /**
-     * Generate a quadrangular cycle path with an edge of n (diameter) cardinal
-     * points with an outlier point.
-     * @param diameter the number of cardinal points in an edge.
-     * @return path to walk.
-     */
-    public String cycleWithOutlier(long diameter) {
-        String path = "";
-        String outlier = "SN";
-        int numberOfCycles = 2; 
-        for(int i = 0; i < numberOfCycles; i++) {
-            path += cycle(diameter, cardinalPoints);
-            path += outlier;            
-        }
-        return path;
-    }
-    
-    /**
-     * Generate a cycle path in eight shape, with an edge of n (diameter)
-     * cardinal points.
-     * @param diameter the number of cardinal points in an edge.
-     * @return path to walk.
-     */
-    public String eightCycle(long diameter) {
-        String path = "";
-        String cardPointsOtherDirection[] = {"S","E","N","O"};
-        path+=cycle(diameter, cardinalPoints);      
-        path+=cycle(diameter, cardPointsOtherDirection);
-        return path;
+        return path.toString();
     }
 
     /**
@@ -159,9 +99,34 @@ public class TestFileMaker {
      * @return path to walk.
      */
     public String wrongInput(long pathSize) {
-        String path = "A";
-        path += line(pathSize);
-        return path;
+        StringBuilder path = new StringBuilder();
+        path.append('A');
+        path.append(line(pathSize));
+        return path.toString();
+    }
+    
+    public String sShapeCycles(long radius) {
+        StringBuilder path = new StringBuilder();
+        for(int j = 0; j < radius-1; j++) {
+            path.append(NORTH);
+        }
+        for(int j = 0; j < radius - 1; j++) {
+            path.append(WEST);
+        }
+        for(int j = 0; j < radius*2 - 2; j++) {
+            path.append(EAST);
+        }
+        for(int i = 0; i < radius - 1; i++) {
+            path.append(SOUTH);
+            for(int j = 0; j < radius*2 - 2; j++) {
+                path.append(WEST);
+            }
+            path.append(SOUTH);
+            for(int j = 0; j < radius*2 - 2; j++) {
+                path.append(EAST);
+            }
+        }
+        return path.toString();
     }
    
     /**
@@ -200,19 +165,15 @@ public class TestFileMaker {
      */
     public static void main(String[] args) {
         TestFileMaker testFileMaker = new TestFileMaker();
-        ArrayList<String> testPaths =  new ArrayList<String>();
+        ArrayList<String> testPaths =  new ArrayList<>();
            
         testPaths.add("E");
-        //testPaths.add("NESO");
-        //testPaths.add("NSNSNSNSNS");
-        //testPaths.add(testFileMaker.cycleWithOutlier(1000));
-        //testPaths.add(testFileMaker.line(1000));
-        //testPaths.add(testFileMaker.eightCycle(1000));
-        //testPaths.add(testFileMaker.eightCycle(1000));
-        //testPaths.add(testFileMaker.wrongInput(2000));
-
-
-        //testPaths.add(testFileMaker.randomWalk(1000000));
+        testPaths.add("NESO");
+        testPaths.add("NSNSNSNSNS");
+        testPaths.add(testFileMaker.line(10000));
+        testPaths.add(testFileMaker.wrongInput(2000));
+        testPaths.add(testFileMaker.sShapeCycles(500));
+        testPaths.add(testFileMaker.randomWalk(1000000));
 
         try {            
             File file = new File("src/test/resources/test.csv");
