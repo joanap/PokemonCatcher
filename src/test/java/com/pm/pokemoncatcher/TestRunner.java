@@ -13,12 +13,12 @@ public class TestRunner {
 
     /**
      * This is the main method which makes use runClasses method to run
-     * PokemonCatcherTest. Print the result of the tests to standard ouput
+ SimplePokemonCatcherTest. Print the result of the tests to standard ouput
      *
      * @param args unused.
      */
     public static void main(String[] args) {
-        Result result = JUnitCore.runClasses(PokemonCatcherTest.class);
+        Result result = JUnitCore.runClasses(SimplePokemonCatcherTest.class);
 
         for (Failure failure : result.getFailures()) {
             System.out.println(failure.toString());

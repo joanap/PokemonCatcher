@@ -15,16 +15,16 @@ import static org.junit.Assert.assertEquals;
  * @author joanapinto
  */
 @RunWith(JUnitParamsRunner.class)
-public class PokemonCatcherTest {
+public class OptimizedPokemonCatcherTest {
 
-    private SimplePokemonCatcher pokemonCatcher;
+    private OptimizedPokemonCatcher pokemonCatcher;
 
     /**
      * Initialize the class SimplePokemonCatcher to test
      */
     @Before
     public void initialize() {
-        pokemonCatcher = new SimplePokemonCatcher();
+        pokemonCatcher = new OptimizedPokemonCatcher();
     }
 
     /**

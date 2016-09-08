@@ -41,7 +41,9 @@ public class PokemonCatcherTester {
         Scanner scanner = new Scanner(System.in);
         PokemonCatcherTester test = new PokemonCatcherTester();
         String pathInCardinalPoints = test.processInput(scanner);
-        SimplePokemonCatcher pokemonCatcher = new SimplePokemonCatcher();
+        //SimplePokemonCatcher pokemonCatcher = new SimplePokemonCatcher();
+        OptimizedPokemonCatcher pokemonCatcher = new OptimizedPokemonCatcher();
+
 
         for (int i = 0; i < pathInCardinalPoints.length(); i++){
             char cardinalPoint = pathInCardinalPoints.charAt(i);    
