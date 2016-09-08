@@ -42,7 +42,7 @@ public class PokemonCatcherTester {
         PokemonCatcherTester test = new PokemonCatcherTester();
         String pathInCardinalPoints = test.processInput(scanner);
         //SimplePokemonCatcher pokemonCatcher = new SimplePokemonCatcher();
-        OptimizedPokemonCatcher pokemonCatcher = new OptimizedPokemonCatcher();
+        PokemonCatcherInterface pokemonCatcher = new OptimizedPokemonCatcher();
 
 
         for (int i = 0; i < pathInCardinalPoints.length(); i++){

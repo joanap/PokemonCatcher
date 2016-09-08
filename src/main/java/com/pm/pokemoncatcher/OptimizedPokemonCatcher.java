@@ -14,6 +14,11 @@ public class OptimizedPokemonCatcher implements PokemonCatcherInterface {
     /**
      *
      */
+    public static final char NORTH = 'N';
+    public static final char SOUTH = 'S';
+    public static final char EAST = 'E';
+    public static final char WEST = 'O';
+
     public static final Coordinate INITIAL_COORDINATE = new Coordinate(0, 0);
     Coordinate currentCoordinate = INITIAL_COORDINATE;
     HashMap<Long, Long> coordinatesNumberInSquare = new HashMap<Long, Long>();
@@ -30,12 +35,7 @@ public class OptimizedPokemonCatcher implements PokemonCatcherInterface {
     }
 
     public long numberOfCardinalPointsInSquare(long radius) {
-        if(radius == 0) {
-            return 1;
-        }
-        else {
-            return 8 * radius;   
-        }
+        return radius == 0 ? 1 : 8 * radius;
     }
 
     public long squareOfCoordinate() {
@@ -87,16 +87,16 @@ public class OptimizedPokemonCatcher implements PokemonCatcherInterface {
     @Override
     public void walk(char direction) {
         switch (direction) {
-            case 'N':
+            case NORTH:
                 currentCoordinate = new Coordinate(currentCoordinate.getX(), currentCoordinate.getY() + 1);
                 break;
-            case 'S':
+            case SOUTH:
                 currentCoordinate = new Coordinate(currentCoordinate.getX(), currentCoordinate.getY() - 1);
                 break;
-            case 'E':
+            case EAST:
                 currentCoordinate = new Coordinate(currentCoordinate.getX() + 1, currentCoordinate.getY());
                 break;
-            case 'O':
+            case WEST:
                 currentCoordinate = new Coordinate(currentCoordinate.getX() - 1, currentCoordinate.getY());
                 break;
         }
@@ -104,12 +104,14 @@ public class OptimizedPokemonCatcher implements PokemonCatcherInterface {
 
     @Override
     public void catchPokemon() {
-        if (isFullSquare(squareOfCoordinate())) {
-            removeFullSquare();
-        }
-        else if (isNewPokemon()) {
-            addPokemonToSquare();
-            numberCaughtPokemons += 1;
+        if (!isFullSquare(squareOfCoordinate())) {
+            if (isNewPokemon()) {
+                addPokemonToSquare();
+                numberCaughtPokemons += 1;
+                if(isFullSquare(squareOfCoordinate())) {
+                    removeFullSquare();
+                }
+            }
         }
     }
 

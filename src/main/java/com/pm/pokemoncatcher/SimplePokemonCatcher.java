@@ -11,6 +11,11 @@ public class SimplePokemonCatcher implements PokemonCatcherInterface {
     /**
      *
      */
+    public static final char NORTH = 'N';
+    public static final char SOUTH = 'S';
+    public static final char EAST = 'E';
+    public static final char WEST = 'O';
+
     public static final Coordinate INITIAL_COORDINATE = new Coordinate(0, 0);
     HashSet<Coordinate> pathInCoordinates = new HashSet<Coordinate>();
     Coordinate currentCoordinate = INITIAL_COORDINATE;
@@ -42,16 +47,16 @@ public class SimplePokemonCatcher implements PokemonCatcherInterface {
     @Override
     public void walk(char direction) {
         switch (direction) {
-            case 'N':
+            case NORTH:
                 currentCoordinate = new Coordinate(currentCoordinate.getX(), currentCoordinate.getY() + 1);
                 break;
-            case 'S':
+            case SOUTH:
                 currentCoordinate = new Coordinate(currentCoordinate.getX(), currentCoordinate.getY() - 1);
                 break;
-            case 'E':
+            case EAST:
                 currentCoordinate = new Coordinate(currentCoordinate.getX() + 1, currentCoordinate.getY());
                 break;
-            case 'O':
+            case WEST:
                 currentCoordinate = new Coordinate(currentCoordinate.getX() - 1, currentCoordinate.getY());
                 break;
         }
