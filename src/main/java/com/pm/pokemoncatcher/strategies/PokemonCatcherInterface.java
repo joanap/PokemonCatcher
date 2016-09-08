@@ -1,14 +1,11 @@
-package com.pm.pokemoncatcher;
+package com.pm.pokemoncatcher.strategies;
 
 /**
  *
  * @author joanapinto
  */
 public interface PokemonCatcherInterface {
-
-    public void walk(char direction);
-
     public void catchPokemon();
-
     public long getNumberCaughtPokemons();
+    public void walk(char direction);
 }

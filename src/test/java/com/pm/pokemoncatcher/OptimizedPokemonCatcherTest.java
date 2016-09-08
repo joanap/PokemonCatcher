@@ -1,5 +1,6 @@
 package com.pm.pokemoncatcher;
 
+import com.pm.pokemoncatcher.strategies.OptimizedPokemonCatcher;
 import junitparams.FileParameters;
 import junitparams.JUnitParamsRunner;
 
@@ -55,7 +56,8 @@ public class OptimizedPokemonCatcherTest {
         long usedMemoryBefore = runtime.totalMemory() - runtime.freeMemory();
 
         processPath(inputPath);
-
+        
+        System.gc(); //call GC
         long usedMemoryAfter = runtime.totalMemory() - runtime.freeMemory();
         System.out.println("Memory: " + (usedMemoryAfter - usedMemoryBefore) + " bytes");
 

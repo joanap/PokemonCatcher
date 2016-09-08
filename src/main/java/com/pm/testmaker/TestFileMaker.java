@@ -1,6 +1,6 @@
 package com.pm.testmaker;
 
-import com.pm.pokemoncatcher.SimplePokemonCatcher;
+import com.pm.pokemoncatcher.strategies.SimplePokemonCatcher;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;

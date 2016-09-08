@@ -1,5 +1,6 @@
 package com.pm.pokemoncatcher;
 
+import com.pm.pokemoncatcher.strategies.SimplePokemonCatcher;
 import junitparams.FileParameters;
 import junitparams.JUnitParamsRunner;
 
