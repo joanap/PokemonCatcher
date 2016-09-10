@@ -6,14 +6,30 @@ package com.pm.pokemoncatcher.mapper;
  */
 public class Coordinate {
 
+    /**
+     * component x of coordinate
+     */
     public final long x;
+
+    /**
+     * component x of coordinate
+     */
     public final long y;
 
+    /**
+     * Coordinate constructor
+     * @param x
+     * @param y
+     */
     public Coordinate(long x, long y) {
         this.x = x;
         this.y = y;
     }
 
+    /**
+     * Assign a hashcode to a coordinate
+     * @return the hashcode
+     */
     @Override
     public int hashCode() {
         int result = 1;
@@ -22,6 +38,11 @@ public class Coordinate {
         return result;
     }
 
+    /**
+     * Compare if two coordinates are the same
+     * @param o coordinate to compare
+     * @return true if same coordinate
+     */
     @Override
     public boolean equals(Object o) {
         if (o instanceof Coordinate) {

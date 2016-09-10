@@ -6,7 +6,8 @@ import java.util.Scanner;
 
 /**
  * The PokemonCatcher program implements an application that tests the
- SimplePokemonCatcher class with a path from standard input given by the user.
+ Optimized PokemonCatcherwith a path from standard input given in the sandard
+ * input.
  * It prints the number of caught pokemons to standard output.
  * 
  * @author joanapinto
@@ -62,4 +63,3 @@ public class PokemonCatcher {
         System.out.println(catcher.getNumberCaughtPokemons());
     }
 }
-

@@ -6,7 +6,8 @@ import com.pm.pokemoncatcher.mapper.Coordinate;
 import java.util.HashSet;
 
 /**
- *
+ * SimplePokemonCatcher implements a simple solution to catch pokemons.
+ * It stores all the distinct coordinates in a path.
  * @author joanapinto
  */
 public final class SimplePokemonCatcher implements PokemonCatcherInterface {
@@ -40,7 +41,11 @@ public final class SimplePokemonCatcher implements PokemonCatcherInterface {
     public long getNumberCaughtPokemons() {        
         return this._pathInCoordinates.size();
     }
-
+    
+    /**
+     * Update the current location based on a direction.
+     * @param direction the direction to move.
+     */
     @Override
     public void walk(char direction) {
         _map.walk(direction);

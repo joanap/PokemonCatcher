@@ -31,8 +31,7 @@ public class SimplePokemonCatcherTest extends PokemonCatcherTest {
     
      /**
      * Test if the number of caught pokemons is the expected number The method
-     * is run with input paths in file src/test/resources/test.csv. Print memory
-     * usage to standard output.
+     * is run with input paths in file src/test/resources/test.csv.
      *
      * @param inputPath path to catch pokemons
      * @param expectedResult expected number of caught pokemons

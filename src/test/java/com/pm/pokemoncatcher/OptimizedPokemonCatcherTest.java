@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.assertEquals;
 
 /**
- * JUint test to the SimplePokemonCatcher class
+ * JUint test to the OptimizedPokemonCatcher class
  *
  * @author joanapinto
  */
@@ -21,7 +21,7 @@ public class OptimizedPokemonCatcherTest extends PokemonCatcherTest{
     private PokemonCatcherInterface pokemonCatcher;
 
     /**
-     * Initialize the class SimplePokemonCatcher to test
+     * Initialize the class OptimizedPokemonCatcher to test
      */
     @Before
     @Override
@@ -31,9 +31,7 @@ public class OptimizedPokemonCatcherTest extends PokemonCatcherTest{
     
      /**
      * Test if the number of caught pokemons is the expected number The method
-     * is run with input paths in file src/test/resources/test.csv. Print memory
-     * usage to standard output.
-     *
+     * is run with input paths in file src/test/resources/test.csv.
      * @param inputPath path to catch pokemons
      * @param expectedResult expected number of caught pokemons
      */
