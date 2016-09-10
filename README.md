@@ -11,4 +11,6 @@ mvn compile
 mvn exec:java -Dexec.mainClass="com.pm.pokemoncatcher.PokemonCatcher
 ```
 - Test program with JUnit tests, using the input file "src/test/resources/test.csv"
-	mvn test
+```sh
+mvn test
+```
